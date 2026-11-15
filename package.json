@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/types.d.mts",
       "import": "./dist/module.mjs"
+    },
+    "./zod": {
+      "types": "./dist/zod.d.mts",
+      "import": "./dist/zod.mjs"
     }
   },
   "main": "./dist/module.mjs",
@@ -33,6 +37,14 @@
     "@nuxt/kit": "^4.6.4",
     "defu": "^6.1.7"
   },
+  "peerDependencies": {
+    "zod": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@nuxt/devtools": "^3.4.2",
     "@nuxt/eslint-config": "^1.17.0",
@@ -48,6 +60,7 @@
     "typescript": "^6.0.3",
     "vitest": "^5.0.3",
     "vue": "^3.5.45",
-    "vue-tsc": "^3.3.12"
+    "vue-tsc": "^3.3.12",
+    "zod": "^4.6.7"
   }
 }
