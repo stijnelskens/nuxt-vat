@@ -1,19 +1,26 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import { addImports, addServerImports, createResolver, defineNuxtModule } from '@nuxt/kit'
 
-// Module options TypeScript interface definition
+export type { VatCheckResult, VatFormatResult, VatStatus } from './runtime/shared/types'
+export type { VatCountryCode, VatCountryRule } from './runtime/shared/format'
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type -- filled in with the VIES options
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-vat',
-    configKey: 'nuxtVat',
+    configKey: 'vat',
+    compatibility: {
+      nuxt: '>=4.0.0',
+    },
   },
-  // Default configuration options of the Nuxt module
   defaults: {},
-  setup(_options, _nuxt) {
+  setup() {
     const resolver = createResolver(import.meta.url)
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'))
+    // Shared util: one file, registered for both the Vue app and the Nitro server.
+    const format = resolver.resolve('./runtime/shared/format')
+    addImports({ name: 'isValidVatFormat', from: format })
+    addServerImports({ name: 'isValidVatFormat', from: format })
   },
 })
