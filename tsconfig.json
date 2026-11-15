@@ -4,5 +4,8 @@
     "dist",
     "node_modules",
     "playground",
+    "test/fixtures",
+    // Server runtime code is type-checked in the Nitro context: src/runtime/server/tsconfig.json
+    "src/runtime/server",
   ]
 }
