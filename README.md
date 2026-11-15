@@ -8,7 +8,7 @@
 EU VAT number validation for Nuxt: format checks, VIES lookup with caching, and auto-imported composables for client and server.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-vat?file=playground%2Fapp.vue) -->
+- [🏀 Online playground](https://stackblitz.com/github/stijnelskens/nuxt-vat?file=playground%2Fapp.vue)
 
 ## Features
 

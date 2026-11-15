@@ -2,7 +2,14 @@
   "name": "nuxt-vat",
   "version": "1.0.0",
   "description": "EU VAT number validation for Nuxt: format checks, VIES lookup with caching, and auto-imported composables for client and server.",
-  "repository": "your-org/nuxt-vat",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stijnelskens/nuxt-vat.git"
+  },
+  "homepage": "https://github.com/stijnelskens/nuxt-vat#readme",
+  "bugs": {
+    "url": "https://github.com/stijnelskens/nuxt-vat/issues"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {
