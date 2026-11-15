@@ -11,8 +11,12 @@ describe('VIES check route (fake VIES)', async () => {
     rootDir: fileURLToPath(new URL('./fixtures/basic', import.meta.url)),
   })
 
-  it('auto-imports isValidVatFormat in the app', async () => {
-    expect(await $fetch<string>('/')).toContain('<div id="normalized">BE0417497106</div>')
+  it('auto-imports isValidVatFormat and useVatCheck in the app', async () => {
+    const html = await $fetch<string>('/')
+    expect(html).toContain('<div id="normalized">BE0417497106</div>')
+    // Format results render during SSR; network checks never run on the server.
+    expect(html).toContain('<div id="ssr-invalid">invalid_format/false</div>')
+    expect(html).toContain('<div id="ssr-pending">/</div>')
   })
 
   it('returns valid with name and address', async () => {

@@ -4,6 +4,7 @@ import { VIES_CHECK_URL } from './runtime/server/utils/vies'
 
 export type { VatCheckResult, VatFormatResult, VatStatus } from './runtime/shared/types'
 export type { VatCountryCode, VatCountryRule } from './runtime/shared/format'
+export type { UseVatCheckReturn, VatCompany } from './runtime/app/composables/useVatCheck'
 
 export interface ModuleOptions {
   /**
@@ -89,6 +90,9 @@ export default defineNuxtModule<ModuleOptions>({
     const format = resolver.resolve('./runtime/shared/format')
     addImports({ name: 'isValidVatFormat', from: format })
     addServerImports({ name: 'isValidVatFormat', from: format })
+
+    // Client composable. Without VIES it still gives reactive format checks.
+    addImports({ name: 'useVatCheck', from: resolver.resolve('./runtime/app/composables/useVatCheck') })
 
     if (options.vies) {
       addServerImports({ name: 'checkVat', from: resolver.resolve('./runtime/server/utils/checkVat') })
